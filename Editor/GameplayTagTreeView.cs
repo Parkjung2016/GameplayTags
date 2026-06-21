@@ -11,7 +11,7 @@ namespace BandoWare.GameplayTags.Editor
       private Action m_OnSelectionChange;
       private SerializedProperty m_TagNameProperty;
 
-      public GameplayTagTreeView(TreeViewState treeViewState, SerializedProperty tagProperty, Action onSelectionChange)
+      public GameplayTagTreeView(TreeViewState<int> treeViewState, SerializedProperty tagProperty, Action onSelectionChange)
       : base(treeViewState)
       {
          m_OnSelectionChange = onSelectionChange;
@@ -42,7 +42,7 @@ namespace BandoWare.GameplayTags.Editor
          }
       }
 
-      protected override bool CanMultiSelect(TreeViewItem item)
+      protected override bool CanMultiSelect(TreeViewItem<int> item)
       {
          return false;
       }

@@ -38,7 +38,7 @@ namespace BandoWare.GameplayTags.Editor
 
          if (EditorGUI.DropdownButton(position, s_TempContent, FocusType.Keyboard))
          {
-            GameplayTagTreeView tagTreeView = new(new TreeViewState(), property, static () =>
+            GameplayTagTreeView tagTreeView = new(new TreeViewState<int>(), property, static () =>
             {
                EditorWindow.GetWindow<PopupWindow>().Close();
             });

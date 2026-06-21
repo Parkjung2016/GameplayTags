@@ -10,7 +10,7 @@ namespace BandoWare.GameplayTags.Editor
       private static GUIContent s_TempContent = new();
       private SerializedProperty m_ExplicitTagsProperty;
 
-      public GameplayTagContainerTreeView(TreeViewState treeViewState, SerializedProperty explicitTagsProperty, string parentTagFilter = null)
+      public GameplayTagContainerTreeView(TreeViewState<int> treeViewState, SerializedProperty explicitTagsProperty, string parentTagFilter = null)
          : base(treeViewState)
       {
          m_ExplicitTagsProperty = explicitTagsProperty;
@@ -124,7 +124,7 @@ namespace BandoWare.GameplayTags.Editor
 
       private unsafe void UpdateIncludedTags()
       {
-         foreach (TreeViewItem row in GetRows())
+         foreach (TreeViewItem<int> row in GetRows())
          {
             if (row is GameplayTagTreeViewItem item)
             {

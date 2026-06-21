@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BandoWare.GameplayTags.Editor
 {
-   public class GameplayTagTreeViewItem : TreeViewItem
+   public class GameplayTagTreeViewItem : TreeViewItem<int>
    {
       public GameplayTag Tag => m_Tag;
 
@@ -76,7 +76,7 @@ namespace BandoWare.GameplayTags.Editor
       private DeleteTagPanel m_DeleteTagPanel;
       private string m_ParentTagFilter;
 
-      public GameplayTagTreeViewBase(TreeViewState treeViewState)
+      public GameplayTagTreeViewBase(TreeViewState<int> treeViewState)
          : base(treeViewState)
       {
          m_SearchField = new SearchField();
@@ -290,7 +290,7 @@ namespace BandoWare.GameplayTags.Editor
          return GUILayout.Button(GUIUtility.TempContent(texture, tooltip), EditorStyles.toolbarButton, GUILayout.ExpandWidth(false));
       }
 
-      protected override bool DoesItemMatchSearch(TreeViewItem item, string search)
+      protected override bool DoesItemMatchSearch(TreeViewItem<int> item, string search)
       {
          GameplayTagTreeViewItem tagItem = item as GameplayTagTreeViewItem;
          bool nameMatches = tagItem.Tag.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
@@ -314,12 +314,12 @@ namespace BandoWare.GameplayTags.Editor
          m_ParentTagFilter = parentTagName;
       }
 
-      protected override TreeViewItem BuildRoot()
+      protected override TreeViewItem<int> BuildRoot()
       {
-         TreeViewItem root = new(-2, -1, "<Root>");
+         TreeViewItem<int> root = new(-2, -1, "<Root>");
          m_IsEmpty = true;
 
-         List<TreeViewItem> items = new();
+         List<TreeViewItem<int>> items = new();
 
          bool hasFilter = !string.IsNullOrEmpty(m_ParentTagFilter);
          string prefix = hasFilter ? m_ParentTagFilter + "." : null;
